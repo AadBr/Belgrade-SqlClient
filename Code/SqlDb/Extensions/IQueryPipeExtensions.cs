@@ -1,5 +1,5 @@
 ﻿using Code.SqlDb.Extensions;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Belgrade.SqlClient
 {

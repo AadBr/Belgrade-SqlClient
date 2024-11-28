@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xunit;
 using System.Xml;
 using System.Diagnostics;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace CQRS
 {

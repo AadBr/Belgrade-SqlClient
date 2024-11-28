@@ -5,7 +5,7 @@
 //  or FITNESS FOR A PARTICULAR PURPOSE.See the license files for details.
 using Belgrade.SqlClient.Common;
 using System.Data.Common;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Belgrade.SqlClient.SqlDb
 {

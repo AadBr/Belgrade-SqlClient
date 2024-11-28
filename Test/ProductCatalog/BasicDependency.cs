@@ -1,7 +1,8 @@
 ﻿using Belgrade.SqlClient;
 using Belgrade.SqlClient.SqlDb;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System;
+using System.Data.Common;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -31,7 +32,7 @@ namespace Basic
             sut
                     .Sql("SELECT object_id FROM dbo.d1")
                     .OnChange(e=>isChanged=true)
-                    .Map(reader => {}).Wait();
+                    .Map(DbDataReader => {}).Wait();
             c.Sql("DELETE FROM dbo.d1;").Exec().Wait();
             await Task.Delay(5000);
             SqlDependency.Stop(Util.Settings.ProductCatalogConnectionString);
@@ -53,9 +54,10 @@ namespace Basic
             await c.Sql("SELECT TOP 10 object_id INTO dbo.d2 FROM sys.objects;").Exec();
 
             // Action
+            Func<object, bool> value = (sender, e) => { if (e.Type == SqlNotificationType.Change) isChanged = true; };
             sut
                     .Sql("SELECT object_id FROM dbo.d2")
-                    .OnChange((sender, e) => { if (e.Type == SqlNotificationType.Change) isChanged = true; })
+                    .OnChange(value)
                     .Map(reader => { }).Wait();
             c.Sql("DELETE FROM dbo.d2;").Exec().Wait();
             await Task.Delay(5000);

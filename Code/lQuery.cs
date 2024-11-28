@@ -41,6 +41,7 @@ namespace Belgrade.SqlClient
         /// <param name="callback">Async callback function that will be called for each row.</param>
         /// <returns>Task</returns>
         Task Map(Func<DbDataReader, Exception, Task> callback);
+        object OnChange(Func<object, bool> value);
     }
 
     /// <summary>

@@ -158,5 +158,10 @@ namespace Belgrade.SqlClient.Common
         {
             return base.SetCommand(cmd) as IQueryMapper;
         }
+
+        public object OnChange(Func<object, bool> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -241,5 +241,10 @@ namespace Belgrade.SqlClient.Common
             await command.ExecuteNonQueryAsync().ConfigureAwait(false);
             return false;
         }
+
+        public object OnChange(Func<object, bool> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
